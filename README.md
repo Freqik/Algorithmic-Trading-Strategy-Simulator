@@ -8,32 +8,32 @@ This platform allows developers and traders to **simulate**, **analyze**, and **
 
 ---
 
-## 🏗️ High-Level Architecture
+## 🧩 How It Works
 
-The system uses an **Event-Driven** architecture to prevent lookahead bias and ensure realistic simulation.
+The system simulates trading bar-by-bar, just like real life.
 
 ```mermaid
 graph TD
-    User([👤 User]) -->|Config & Run| UI[💻 Frontend (React)]
-    UI -->|JSON Request| API[🚀 Backend API (FastAPI)]
+    User["👤 User"] -->|Config & Run| UI["💻 Frontend"]
+    UI -->|JSON Request| API["🚀 Backend API"]
     
     subgraph "Backend Engine"
-        API -->|Validate| Val{✅ Valid?}
-        Val -->|No| Err[❌ Error Response]
-        Val -->|Yes| Fetch[📉 Data Engine]
+        API -->|Check| Val{"✅ Valid?"}
+        Val -->|No| Err["❌ Error"]
+        Val -->|Yes| Fetch["📉 Data Engine"]
         
-        Fetch -->|Get OHLCV| YF[(☁️ Yahoo Finance)]
-        YF -.->|Rate Limited?| Mock[🎲 Mock Data Gen]
+        Fetch -->|Get Prices| YF[("☁️ Yahoo Finance")]
+        YF -.->|Limit Reached?| Mock["🎲 Mock Data"]
         
-        Fetch -->|Inject Data| BT[⚙️ Backtrader Engine]
-        Strategy[🧠 Strategy Logic] -->|Inject| BT
+        Fetch -->|Send Data| BT["⚙️ Simulation"]
+        Strategy["🧠 Strategy"] -->|Combine| BT
         
-        BT -->|Simulate| Exec[⚡ Execution Loop]
-        Exec -->|Trades & Equity| Analytics[📊 Analytics Module]
+        BT -->|Run Loop| Exec["⚡ Execution"]
+        Exec -->|Results| Analytics["📊 Calculator"]
     end
     
-    Analytics -->|Metrics (Sharpe, Drawdown)| UI
-    Analytics -->|Equity Curve| UI
+    Analytics -->|Metrics| UI
+    Analytics -->|Charts| UI
 ```
 
 ---
