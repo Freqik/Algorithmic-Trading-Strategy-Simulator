@@ -123,6 +123,3 @@ This project strictly adheres to a philosophy of **Graceful Degradation**:
 └── 📄 LIMITATIONS.md       # Detailed constraints
 ```
 
----
-
-_Built for the **Advanced Agentic Coding** evaluation._
