@@ -1,0 +1,35 @@
+# Internal Documentation (Excluded)
+INTERVIEW_GUIDE.md
+PROJECT_INTERNALS.md
+API_SAMPLE.md
+VERIFICATION_GUIDE.md
+walkthrough.md
+
+# Debug & Verification Artifacts
+verify_fix.py
+debug_traceback.log
+debug_yfinance.py
+error_case2.log
+test_output.txt
+*.log
+
+# Environment & Secrets
+.env
+backend/.env
+
+# Dependencies & Build
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+dist/
+build/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Excluded by Strict Rule (Not in "Production Code" list)
+backend/tests/
